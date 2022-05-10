@@ -3,9 +3,9 @@ runtime:
 
 site:
   title: Template Tutorial(Dev Mode)
-  url: http://localhost:3000/rhs-build-course/index.html
-  start_page: template-tutorial::index.adoc
-
+  url: http://localhost:3000/redhat-workshop-openshift-pipelines/index.html
+  start_page: redhat-workshop-openshift-pipelines::index.adoc
+ 
 content:
   sources:
     - url: .

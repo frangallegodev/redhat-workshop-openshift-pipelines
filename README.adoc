@@ -1,1 +1,24 @@
-Check the build courseware https://redhat-scholars.github.io/build-course[documentation]  on how folder structure, how to use macros and other gotchas
+# Red Hat Workshop - Openshift Pipelines
+
+## Introduction
+
+_Red Hat Workshop Openshift Pipelines_ is a repository which includes a tutorial with a set of practices for the purpose of practicing with Openshift Pipelines.
+
+The general idea behind this workshop is to get an initial understanding of the following points:
+
+- Tasks
+- Pipelines
+- Workspaces
+- Triggers
+
+## Courseware official documentation
+
+This tutorial has been developed using courseware. Please visit courseware https://redhat-scholars.github.io/build-course[documentation] for more information about this framework.
+
+## Author Information
+
+David Severiano @Red Hat
+
+dseveria@redhat.com
+
+davidseve16@gmail.com

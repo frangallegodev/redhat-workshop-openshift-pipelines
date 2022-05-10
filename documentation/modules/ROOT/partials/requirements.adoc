@@ -1,0 +1,20 @@
+
+[cols="5*^,5*.",options="header,+attributes"]
+|===
+|**Tool**|**Fedora**|**macOS**|**Windows**|**Official Documentation**
+| oc
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz[Download]
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-mac.tar.gz[Download]
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-windows.zip[Download]
+| https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html[OpenShift CLI - Docs]
+| git
+| https://git-scm.com/download/linux[Download]
+| https://git-scm.com/download/mac[Download]
+| https://git-scm.com/download/win[Download]
+| https://git-scm.com[Git - Docs]
+| Tekton CLI
+| https://github.com/tektoncd/cli/releases/download/v0.23.1/tkn_0.23.1_Linux_x86_64.tar.gz[Download]
+| https://github.com/tektoncd/cli/releases/download/v0.23.1/tkn_0.23.1_Darwin_x86_64.tar.gz[Download]
+| https://github.com/tektoncd/cli/releases/download/v0.23.1/tkn_0.23.1_Windows_x86_64.zip[Download]
+| https://tekton.dev/docs/[Tekton - Docs]
+|===
