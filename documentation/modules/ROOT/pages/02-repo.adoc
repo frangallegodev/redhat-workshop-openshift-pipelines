@@ -39,7 +39,7 @@ Once you have your own GitOps repository in GitHub, it is time to clone it on yo
 [source,input,subs="+macros,+attributes"]
 ----
 cd ~
-git clone https://github.com/<github_user>/openshift-ci-cd-workshop.git
+git clone https://github.com/<github_user>/redhat-workshop-openshift-pipelines.git
 ----
 
 IMPORTANT: Replace *<github_user>* value with your GitHub username
