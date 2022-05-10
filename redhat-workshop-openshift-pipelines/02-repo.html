@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Welcome to Red Hat Workshop - Openshift Pipelines :: Red Hat Workshop - Openshift Pipelines</title>
-    <link rel="canonical" href="https://davidseve.github.io/redhat-workshop-openshift-pipelines/redhat-workshop-openshift-pipelines/index.html/redhat-workshop-openshift-pipelines/index.html">
-    <link rel="next" href="01-setup.html">
+    <title>Untitled :: Red Hat Workshop - Openshift Pipelines</title>
+    <link rel="canonical" href="https://davidseve.github.io/redhat-workshop-openshift-pipelines/redhat-workshop-openshift-pipelines/index.html/redhat-workshop-openshift-pipelines/02-repo.html">
+    <link rel="prev" href="01-setup.html">
+    <link rel="next" href="03-pipelines.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -77,7 +78,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="02-repo.html">2. Tekton examples repository</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -109,58 +110,103 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Red Hat Workshop - Openshift Pipelines</a></li>
-    <li><a href="index.html">Welcome to Red Hat Workshop - Openshift Pipelines</a></li>
+    <li><a href="02-repo.html">2. Tekton examples repository</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/davidseve/redhat-workshop-openshift-pipelines/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/davidseve/redhat-workshop-openshift-pipelines/edit/master/documentation/modules/ROOT/pages/02-repo.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Welcome to Red Hat Workshop - Openshift Pipelines</h1>
-<div class="sect1 text-center strong">
-<h2>Introduction</h2>
+<div class="sect1">
+<h2 id="02-repo"><a class="anchor" href="#02-repo"></a>Prepare Tekton examples repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><em>Red Hat Workshop Openshift Pipelines</em> is a repository which includes a tutorial with a set of practices for the purpose of practicing with Openshift Pipelines.</p>
-</div>
-<div class="paragraph">
-<p>The general idea behind this workshop is to get an initial understanding of the following points:</p>
+<p>First of all, it is required to prepare the Tekton examples repository in order to allocate the following resources:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Tasks</p>
+<p>Tekton tasks</p>
 </li>
 <li>
-<p>Pipelines</p>
+<p>Tekton pipelines</p>
 </li>
 <li>
-<p>Workspaces</p>
-</li>
-<li>
-<p>Triggers</p>
+<p>Tekton triggers</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1 text-center strong">
-<h2>Getting Started</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>First of all, it is required to review your local machine prerequisites and laboratory environment access in order to be able to start working on this tutorial.</p>
+<p>Please follow the next sections to make this new repository available.</p>
 </div>
+<div class="sect2">
+<h3 id="02-repofork"><a class="anchor" href="#02-repofork"></a>Fork</h3>
 <div class="paragraph">
-<p>Please follow <a href="01-setup.html" class="xref page">Environment Setup</a> for more information.</p>
+<p>Regarding preparing this repository, you have a shared repository in GitHub ready to go. Please follow the next steps to copy this repository in your GitHub account in order to be able to operate it freely:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Login in <a href="https://github.com">GitHub</a></p>
+</li>
+<li>
+<p>Access <a href="https://github.com/davidseve/redhat-workshop-openshift-pipelines">GitHub * Openshift Pipelines workshop</a></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_davidseve.png" alt="github davidseve">
+</div>
+<div class="title">Figure 1. Davidseve GitOps Repository</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fork the repository</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_gitops_fork.png" alt="github gitops fork">
+</div>
+<div class="title">Figure 2. Davidseve GitOps Repository Fork</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="02-repoclone"><a class="anchor" href="#02-repoclone"></a>Clone</h3>
+<div class="paragraph">
+<p>Once you have your own GitOps repository in GitHub, it is time to clone it on your laptop in order to start working.</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">cd ~
+git clone <a href="https://github.com/&lt;github_user&gt;/openshift-ci-cd-workshop.git" class="bare">https://github.com/&lt;github_user&gt;/openshift-ci-cd-workshop.git</a></code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Replace <strong>&lt;github_user&gt;</strong> value with your GitHub username
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="01-setup.html">1. Environment Setup</a></span>
+  <span class="prev"><a href="01-setup.html">1. Environment Setup</a></span>
+  <span class="next"><a href="03-pipelines.html">3. OpenShift Pipelines</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

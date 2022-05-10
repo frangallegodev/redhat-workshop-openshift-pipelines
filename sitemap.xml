@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:3000/rhs-build-course/index.html/redhat-workshop-openshift-pipelines/01-setup.html</loc>
-<lastmod>2022-05-10T13:56:17.535Z</lastmod>
+<loc>https://davidseve.github.io/redhat-workshop-openshift-pipelines/redhat-workshop-openshift-pipelines/index.html/redhat-workshop-openshift-pipelines/01-setup.html</loc>
+<lastmod>2022-05-10T16:05:26.834Z</lastmod>
 </url>
 <url>
-<loc>http://localhost:3000/rhs-build-course/index.html/redhat-workshop-openshift-pipelines/index.html</loc>
-<lastmod>2022-05-10T13:56:17.535Z</lastmod>
+<loc>https://davidseve.github.io/redhat-workshop-openshift-pipelines/redhat-workshop-openshift-pipelines/index.html/redhat-workshop-openshift-pipelines/02-repo.html</loc>
+<lastmod>2022-05-10T16:05:26.834Z</lastmod>
+</url>
+<url>
+<loc>https://davidseve.github.io/redhat-workshop-openshift-pipelines/redhat-workshop-openshift-pipelines/index.html/redhat-workshop-openshift-pipelines/03-pipelines.html</loc>
+<lastmod>2022-05-10T16:05:26.834Z</lastmod>
+</url>
+<url>
+<loc>https://davidseve.github.io/redhat-workshop-openshift-pipelines/redhat-workshop-openshift-pipelines/index.html/redhat-workshop-openshift-pipelines/index.html</loc>
+<lastmod>2022-05-10T16:05:26.834Z</lastmod>
 </url>
 </urlset>

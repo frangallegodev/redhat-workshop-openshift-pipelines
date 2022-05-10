@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Red Hat OpenShift Pipelines :: Red Hat Workshop - Openshift Pipelines</title>
+    <link rel="canonical" href="https://davidseve.github.io/redhat-workshop-openshift-pipelines/redhat-workshop-openshift-pipelines/index.html/redhat-workshop-openshift-pipelines/03-pipelines.html">
+    <link rel="prev" href="02-repo.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://davidseve.github.io/redhat-workshop-openshift-pipelines/redhat-workshop-openshift-pipelines/index.html">Red Hat Workshop - Openshift Pipelines</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="redhat-workshop-openshift-pipelines" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="01-setup.html">1. Environment Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-setup.html#01-prerequisites">1.1 Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="01-setup.html#01-laboratory">1.2 Laboratory</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="01-setup.html#01-parameters">1.2.1 Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="01-setup.html#01-accessoc">1.2.2 Access - OC Client</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="01-setup.html#01-accessconsole">1.2.3 Access - OCP Console</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="01-setup.html#01-summary">1.2.4 Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="02-repo.html">2. Tekton examples repository</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-pipelines.html">3. OpenShift Pipelines</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#01-tasks">3.1 Tasks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#02-pipelines">3.2 Pipelines</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#03-workspaces">3.3 Workspaces</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#04-triggers">3.4 Triggers</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Red Hat Workshop - Openshift Pipelines</a></li>
+    <li><a href="03-pipelines.html">3. OpenShift Pipelines</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/davidseve/redhat-workshop-openshift-pipelines/edit/master/documentation/modules/ROOT/pages/03-pipelines.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Red Hat OpenShift Pipelines</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is a sample tutorial to shows the main capabilities of Red Hat
+OpenShift Pipelines (based in <a href="https://tekton.dev/">Tekton</a>).</p>
+</div>
+<div class="paragraph">
+<p>This tutorial walks through from the main components of this new way to
+define CICD pipelines.</p>
+</div>
+<div class="paragraph">
+<p>To follow it, the next requirements must be resolved:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Red Hat OpenShift 4</p>
+</li>
+<li>
+<p>Red Hat OpenShift Pipelines operator</p>
+</li>
+<li>
+<p><a href="https://github.com/tektoncd/cli">Tekton CLI</a> (<code>tkn</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For this workshop we are going to use the examples from the the folder <em>documentation/modules/ROOT/examples/</em>
+ that belong to the repository that has been forked.</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">cd documentation/modules/ROOT/examples/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>TIP</strong>: Create a new project (e.g.) <code>user10-pipelines-demo</code> to follow this repo:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc new-project &lt;user&gt;-pipelines-demo</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="01-tasks"><a class="anchor" href="#01-tasks"></a>Tasks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <code>Task</code> is a collection of <code>Steps</code> that you define and arrange in a specific
+order of execution as part of your continuous integration flow. A <code>Task</code> executes
+as a Pod on your OpenShift cluster. A <code>Task</code> is available within a specific
+namespace, while a <code>ClusterTask</code> is available across the entire cluster.</p>
+</div>
+<div class="paragraph">
+<p>References:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://tekton.dev/docs/pipelines/tasks/">TektonCD - Tasks</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_sample_task"><a class="anchor" href="#_sample_task"></a>Sample Task</h3>
+<div class="paragraph">
+<p>A sample task with a single step looks like similar to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello-task
+  annotations:
+    description: |
+      A simple task that prints the a greeting message
+spec:
+  steps:
+    - name: say-hello
+      image: registry.redhat.io/ubi8/ubi-minimal
+      command:
+        - /bin/bash
+      args: ['-c', 'echo Hello World']</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create this task in OpenShift:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f task/01-hello-task.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start the task and show the log output:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn task start hello-task --showlog
+TaskRun started: hello-task-run-gng4t
+Waiting for logs to be available...
+[say-hello] Hello World</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parametrized_task"><a class="anchor" href="#_parametrized_task"></a>Parametrized Task</h3>
+<div class="paragraph">
+<p><code>Tasks</code> can also take parameters. This way, you can pass various flags to be
+used in the <code>Task</code>. These parameters can be instrumental in making your <code>Tasks</code>
+more generic and reusable across <code>Pipelines</code>.</p>
+</div>
+<div class="paragraph">
+<p>A extended version of the previous task to ask for the name of a person looks
+like similar to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello-params-task
+  annotations:
+    description: |
+      A simple task that prints the a variable greeting message
+spec:
+  params:
+    - name: person
+      description: Name of person to greet
+      default: World
+      type: string
+  steps:
+    - name: say-hello
+      image: registry.redhat.io/ubi8/ubi-minimal
+      command:
+        - /bin/bash
+      args: ['-c', 'echo Hello $(params.person)']</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This parameter could define a default value, in case it is not defined when the
+task is started.</p>
+</div>
+<div class="paragraph">
+<p>Create the task:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f task/02-hello-params-task.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start the task without parameters it will force to declare them:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn task start hello-params-task --showlog
+? Value for param `person` of type `string`? (Default is `World`) World
+TaskRun started: hello-params-task-run-xpgv7
+Waiting for logs to be available...
+[say-hello] Hello World</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>tkn</code> includes the <code>--use-param-defaults</code> argument to use the default values
+of the parameters. The argument <code>--param</code> or <code>-p</code> sets up a different value for
+the parameter:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn task start hello-params-task \
+  -p person="My name" \
+  --showlog
+TaskRun started: hello-params-task-run-jqfbs
+Waiting for logs to be available...
+[say-hello] My name</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multiple_stepped_task"><a class="anchor" href="#_multiple_stepped_task"></a>Multiple Stepped Task</h3>
+<div class="paragraph">
+<p><code>Tasks</code> can have more than one <code>step</code>, allowing to specialize the task with more
+detailed steps. The steps will run in the order in which they are defined in the
+steps array.</p>
+</div>
+<div class="paragraph">
+<p>The <em>03-hello-multisteps-task.yaml</em> includes a
+task with two steps to combine the execution of the task.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello-multisteps-task
+  annotations:
+    description: |
+      A simple task with some steps that prints the a
+      variable greeting message
+spec:
+  params:
+    - name: person
+      description: Name of person to greet
+      default: World
+      type: string
+  steps:
+    - name: write-hello
+      image: registry.redhat.io/ubi8/ubi-minimal
+      script: |
+        #!/usr/bin/env bash
+        echo Preparing greeting
+        echo -n Hello $(params.person) &gt; /tekton/home/hello.txt
+        sleep 2
+        echo Done!
+    - name: say-hello
+      image: node:14
+      script: |
+        #!/usr/bin/env node
+        let fs = require("fs");
+        let file = "/tekton/home/hello.txt";
+        let fileContent = fs.readFileSync(file).toString();
+        console.log(fileContent);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the task:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f task/03-hello-multisteps-task.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start the task.</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn task start hello-multisteps-task \
+  -p person="My name" \
+  --showlog
+TaskRun started: hello-multisteps-task-run-xq79n
+Waiting for logs to be available...
+[write-hello] Preparing greeting
+[write-hello] Done!
+
+[say-hello] Hello My name
+[say-hello]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OpenShift has a dashboard to check and review the current status of the <code>Tasks</code> and <code>TaskRuns</code> from
+the menu <code>Pipelines &#8594; Tasks</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tasksrun-dashboard.png" alt="Tasks Run Dashboard">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="02-pipelines"><a class="anchor" href="#02-pipelines"></a>Pipelines</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <code>Pipeline</code> is a collection of <code>Tasks</code> that you define and arrange in a
+specific order of execution as part of your continuous integration flow.
+Each <code>Task</code> in a <code>Pipeline</code> executes as a <code>Pod</code> on your OpenShift cluster.
+You can configure various execution conditions to fit your business needs.</p>
+</div>
+<div class="paragraph">
+<p>In fact, tasks should do one single thing so you can reuse them across
+pipelines or even within a single pipeline.</p>
+</div>
+<div class="paragraph">
+<p>References:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://tekton.dev/docs/pipelines/pipelines/">TektonCD - Pipelines</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_sample_pipeline"><a class="anchor" href="#_sample_pipeline"></a>Sample Pipeline</h3>
+<div class="paragraph">
+<p>A simple pipeline looks like similar to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: say-something-task
+  annotations:
+    description: |
+      A simple task that prints a simple message
+spec:
+  params:
+    - name: say-what
+      description: What should I say
+      default: hello
+      type: string
+    - name: pause-duration
+      description: How long to wait before saying something
+      default: "0"
+      type: string
+  steps:
+    - name: say-it
+      image: registry.access.redhat.com/ubi8/ubi
+      command:
+        - /bin/bash
+      args: ['-c', 'sleep $(params.pause-duration) &amp;&amp; echo $(params.say-what)']</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the task and pipeline:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f task/04-say-something-task.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f pipeline/04-say-things-pipeline.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To start the pipeline:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn pipeline start say-things-pipeline --showlog
+PipelineRun started: say-things-pipeline-run-4wsvb
+Waiting for logs to be available...
+[second-task : say-it] And this is the second task
+[first-task : say-it] Hello, this is the first task</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or create a <code>PipelineRun</code> definition to start the pipeline:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: say-things-pipelinerun
+spec:
+  pipelineRef:
+    name: say-things-pipeline</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f pipeline/04-say-things-pipelinerun.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OpenShift has a dashboard to check and review the current status of the <code>Pipeline</code> and <code>PipelineRun</code> from
+the menu <code>Pipelines &#8594; Pipelines</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/pipelinesrun-dashboard.png" alt="Pipeline Run Dashboard">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parallel_pipeline"><a class="anchor" href="#_parallel_pipeline"></a>Parallel Pipeline</h3>
+<div class="paragraph">
+<p><code>Tasks</code> will be executed in the order defined in the pipeline, or create a
+sequence using <code>runAfter</code> definition.</p>
+</div>
+<div class="paragraph">
+<p>The <em>05-say-things-in-order-pipeline.yaml</em> file
+has a sample of order and parallel tasks in a pipeline.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: say-things-in-order-pipeline
+  annotations:
+    description: |
+      Sample pipeline saying things in different moments.
+spec:
+  tasks:
+    - name: first-task
+      params:
+        - name: pause-duration
+          value: "2"
+        - name: say-what
+          value: "Hello, this is the first task"
+      taskRef:
+        name: say-something-task
+    - name: second-parallel-task
+      params:
+        - name: say-what
+          value: "Happening after task 1, in parallel with task 3"
+        - name: pause-duration
+          value: "2"
+      taskRef:
+        name: say-something-task
+      runAfter:
+        - first-task
+    - name: third-parallel-task
+      params:
+        - name: say-what
+          value: "Happening after task 1, in parallel with task 2"
+        - name: pause-duration
+          value: "1"
+      taskRef:
+        name: say-something-task
+      runAfter:
+        - first-task
+    - name: fourth-task
+      params:
+        - name: say-what
+          value: "Happening after task 2 and 3"
+      taskRef:
+        name: say-something-task
+      runAfter:
+        - second-parallel-task
+        - third-parallel-task</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f pipeline/05-say-things-in-order-pipeline.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To start the pipeline:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn pipeline start say-things-in-order-pipeline --showlog
+PipelineRun started: say-things-in-order-pipeline-run-w6fvn
+Waiting for logs to be available...
+[first-task : say-it] Hello, this is the first task
+
+[second-parallel-task : say-it] Happening after task 1, in parallel with task 3
+[third-parallel-task : say-it] Happening after task 1, in parallel with task 2
+
+[fourth-task : say-it] Happening after task 2 and 3</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And the graphical representation of this pipeline run is:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/say-things-in-order-pipelinerun.png" alt="Parallel pipeline run">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="03-workspaces"><a class="anchor" href="#03-workspaces"></a>Workspaces</h3>
+<div class="paragraph">
+<p><code>Workspaces</code> allow <code>Tasks</code> to declare parts of the filesystem that need
+to be provided at runtime by <code>TaskRuns</code>. A <code>TaskRun</code> can make these parts
+of the filesystem available in many ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>using a read-only <code>ConfigMap</code> or <code>Secret</code>,</p>
+</li>
+<li>
+<p>an existing <code>PersistentVolumeClaim</code> shared with other <code>Tasks</code>, create
+a <code>PersistentVolumeClaim</code> from a provided <code>VolumeClaimTemplate</code>,</p>
+</li>
+<li>
+<p>or simply an <code>emptyDir</code> that is discarded when the <code>TaskRun</code> completes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>Workspaces</code> are similar to <code>Volumes</code> except that they allow a <code>Task</code> author
+to defer to users and their <code>TaskRuns</code> when deciding which class of
+storage to use.</p>
+</div>
+<div class="paragraph">
+<p>The main use cases for <code>Workspaces</code> are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Storage of inputs and/or outputs</p>
+</li>
+<li>
+<p>Sharing data among <code>Tasks</code></p>
+</li>
+<li>
+<p>Mount points for configurations held in <code>Secrets</code> or <code>ConfigMaps</code></p>
+</li>
+<li>
+<p>A cache of build artifacts that speed up jobs</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>References:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://tekton.dev/docs/pipelines/workspaces/">TektonCD - Workspaces</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This is a sample task with a workspace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: count-workspace-pipeline
+  annotations:
+    description: |
+      Sample pipeline using a workspace to share data between
+      different tasks.
+spec:
+  params:
+    - name: GIT_URL
+      type: string
+      default: "https://github.com/spring-projects/spring-petclinic.git"
+    - name: GIT_REVISION
+      type: string
+      default: "main"      
+  workspaces:
+    - name: workspace
+  tasks:
+    - name: fetch-repository
+      params:
+        - name: url
+          value: $(params.GIT_URL)
+        - name: revision
+          value: $(params.GIT_REVISION)
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: workspace
+    - name: count-repo
+      taskRef:
+        name: count-files-workspace-task
+      runAfter:
+        - fetch-repository
+      workspaces:
+        - name: source
+          workspace: workspace</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <em>07-count-workspace-pipeline.yaml</em> file describes
+a sample pipeline using a workspace across different tasks. This example uses a
+<code>ClusterTask</code> to demonstrate how to reuse these objects in a pipeline.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: count-workspace-pipeline
+  annotations:
+    description: |
+      Sample pipeline using a workspace to share data between
+      different tasks.
+spec:
+  params:
+    - name: GIT_URL
+      type: string
+      default: "https://github.com/spring-projects/spring-petclinic.git"
+    - name: GIT_REVISION
+      type: string
+      default: "main"      
+  workspaces:
+    - name: workspace
+  tasks:
+    - name: fetch-repository
+      params:
+        - name: url
+          value: $(params.GIT_URL)
+        - name: revision
+          value: $(params.GIT_REVISION)
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: workspace
+    - name: count-repo
+      taskRef:
+        name: count-files-workspace-task
+      runAfter:
+        - fetch-repository
+      workspaces:
+        - name: source
+          workspace: workspace</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the task and the pipeline:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f task/07-count-files-workspace-task.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f pipeline/07-count-workspace-pipeline.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As this workspace requires a storage, we need to create the <code>PersistentVolumeClaim</code>.
+The <em>07-workspace-pvc.yaml</em> defines it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: workspace-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create PVC to store the data:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f task/07-workspace-pvc.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start the pipeline requires to declare the workspace to use, among other
+parameters declared in the pipeline:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn pipeline start count-workspace-pipeline \
+    --param GIT_URL=https://github.com/spring-projects/spring-petclinic.git \
+    --param GIT_REVISION=main \
+    --workspace name=workspace,claimName=workspace-pvc \
+    --showlog</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start again the pipeline with other parameters:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn pipeline start count-workspace-pipeline \
+    --param GIT_URL=https://github.com/spring-projects/spring-boot.git \
+    --use-param-defaults \
+    --workspace name=workspace,claimName=workspace-pvc \
+    --showlog</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="04-triggers"><a class="anchor" href="#04-triggers"></a>Triggers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tekton Triggers is a Tekton component that allows you to detect and extract
+information from events from a variety of sources and deterministically instantiate
+and execute <code>TaskRuns</code> and <code>PipelineRuns</code> based on that information.
+Tekton Triggers can also pass information extracted from events directly to
+<code>TaskRuns</code> and <code>PipelineRuns</code>.</p>
+</div>
+<div class="paragraph">
+<p>References:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://tekton.dev/docs/triggers/">TektonCD - Triggers</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To show how triggers works, we will extend our previous pipeline to be executed
+with a trigger when a new change is pushed into the GitHub repository.</p>
+</div>
+<div class="paragraph">
+<p>The main objects related with triggers are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>EventListener</code>: listens for events at a specified port on your OpenShift
+cluster. Specifies one or more <code>Triggers</code> or <code>TriggerTemplates</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For our use case we need to create an <code>EventListener</code> that will use a <code>TriggerTemplate</code>.
+The <em>08-count-workspace-pipeline-eventlistener.yaml</em> defines it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: count-workspace-pipeline-eventlistener
+spec:
+  serviceAccountName: pipeline
+  triggers:
+    - triggerRef: github-listener-trigger</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create a <code>EventListener</code> that uses a <code>Trigger</code>:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f trigger/08-count-workspace-pipeline-eventlistener.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>EventListener</code> will create a service to be used to access to. If we want
+to use this service externally, we need to expose as a route:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get svc
+NAME                                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
+el-count-workspace-pipeline-eventlistener   ClusterIP   172.30.134.93   &lt;none&gt;        8080/TCP,9000/TCP   13m</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc expose svc el-count-workspace-pipeline-eventlistener</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The new should be similar to:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get route
+NAME                                        HOST/PORT                                                                                                   PATH   SERVICES                                    PORT            TERMINATION   WILDCARD
+el-count-workspace-pipeline-eventlistener   el-count-workspace-pipeline-eventlistener-pipelines-demo.apps.cluster-76lkr.76lkr.sandbox1545.opentlc.com          el-count-workspace-pipeline-eventlistener   http-listener                 None</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command will get right url to use in the WebHook:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">echo "$(oc get route el-count-workspace-pipeline-eventlistener --template='http://{{.spec.host}}')/hooks"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We will use this route later to integrate in our GitHub repository as a WebHook.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Trigger</code>: specifies what happens when the <code>EventListener</code> detects an event.
+A <code>Trigger</code> specifies a <code>TriggerTemplate</code>, a <code>TriggerBinding</code>, and
+optionally, an Interceptor.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s create a <code>Trigger</code> that will intercept an event (Github webook) and will execute a <code>TriggerTemplate</code>. Ir order to parse the payload and share that information to the <code>TriggerTemplate</code> a <code>TriggerBinding</code> is required.</p>
+</div>
+<div class="paragraph">
+<p>The <em>08-count-workspace-pipeline-trigger.yaml</em> defines it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: Trigger
+metadata:
+  name: github-listener-trigger
+spec:
+  interceptors:
+    - ref:
+        name: github
+      params:
+        - name: secretRef
+          value:
+            secretName: github-interceptor-webhook
+            secretKey: secret
+        - name: eventTypes
+          value: ["push"]
+    - ref:
+        name: cel
+      params:
+        - name: "filter"
+          value: body.ref == 'refs/heads/main'
+  bindings:
+    - ref: count-workspace-pipeline-triggerbinding
+  template:
+    ref: count-workspace-pipeline-triggertemplate</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create a <code>Trigger</code> that uses a <code>TriggerTemplate</code>:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f trigger/08-count-workspace-pipeline-trigger.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The trigger includes an <a href="https://tekton.dev/docs/triggers/interceptors/">Interceptor</a>,
+that it is a "catch-all" event processor to perform payload filtering, to get
+the details from GitHub repo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  interceptors:
+    - ref:
+        name: github
+      params:
+        - name: secretRef
+          value:
+            secretName: github-interceptor-webhook
+            secretKey: secret</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This secret will be used to add a security check to confirm that GitHub is
+invoking the <code>EventListener</code> under a security context.</p>
+</div>
+<div class="paragraph">
+<p>We need to create a <code>Secret</code> with the value to use from GitHub WebHook
+to create a secured call.</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f trigger/08-github-interceptor-webhook-secret.yaml</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TriggerTemplate</code>: specifies a blueprint for the resource, such as a <code>TaskRun</code>
+or <code>PipelineRun</code>, that you want to instantiate and/or execute when your
+<code>EventListener</code> detects an event. It exposes parameters that you can use
+anywhere within your resource’s template.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <em>08-count-workspace-pipeline-triggertemplate.yaml</em> defines it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: count-workspace-pipeline-triggertemplate
+spec:
+  params:
+    - name: git_url
+      description: The git repository that hosts context  
+    - name: git_revision
+      description: The revision of the repository  
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: count-workspace-pipeline-run-
+        annotations:
+          tekton.dev/gitURL: "$(tt.params.git_url)"      
+      spec:
+        pipelineRef:
+          name: count-workspace-pipeline
+        params:
+          - name: GIT_URL
+            value: $(tt.params.git_url)
+          - name: GIT_REVISION
+            value: $(tt.params.git_revision)
+        workspaces:
+          - name: workspace
+            persistentVolumeClaim:
+              claimName: workspace-pvc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the <code>TriggerTemplate</code>:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f trigger/08-count-workspace-pipeline-triggertemplate.yaml</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TriggerBinding</code>: specifies the fields in the event payload from which you
+want to extract data and the fields in your corresponding <code>TriggerTemplate</code>
+to populate with the extracted values. You can then use the populated fields
+in the <code>TriggerTemplate</code> to populate fields in the associated <code>TaskRun</code> or <code>PipelineRun</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <em>08-count-workspace-pipeline-triggerbinding.yaml</em> defines it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: count-workspace-pipeline-triggerbinding
+spec:
+  params:
+  - name: git_url
+    value: $(body.repository.url)
+  - name: git_revision
+    value: $(body.repository.default_branch)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the <code>TriggerBinding</code>:</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc apply -f trigger/08-count-workspace-pipeline-triggerbinding.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The latest step is create a new GitHub WebHook in our repository using the
+route exposed above and adding the <code>/hooks</code> path.</p>
+</div>
+<div class="paragraph">
+<p>In your GitHub repo go to <code>Settings &#8594; Webhooks</code> and click <code>Add Webhook</code>. The
+fields we need to set are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Payload URL</strong>: Your external FQDN address from the route with <code>/hooks</code> path</p>
+</li>
+<li>
+<p><strong>Content type</strong>: <code>application/json</code></p>
+</li>
+<li>
+<p><strong>Secret</strong>: Value defined in <code>github-interceptor-webhook</code> secret.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>From now every time you push a new change in your repository, a new pipeline
+execution will happen.</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">git push origin main</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more details about how to create a webhook, please, review this
+<a href="https://docs.github.com/en/developers/webhooks-and-events/webhooks/creating-webhooks">doc</a>.</p>
+</div>
+<div class="paragraph">
+<p>If you want to integrate with other Git server, you could use Webhooks, following the
+examples created [here](./webhook)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_and_beyond"><a class="anchor" href="#_and_beyond"></a>&#8230;&#8203; and beyond</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This repo includes a short summary of many of the main objects and capabilities of
+Red Hat OpenShift Pipelines (a.k.a. Tekton), but it is only a surface of all the them.
+Please, go to the resources of this amazing project to learn and improve your
+CICD pipelines in a cloud native way.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.openshift.com/container-platform/4.10/cicd/pipelines/op-release-notes.html">Red Hat OpenShift Pipelines Release Notes</a></p>
+</li>
+<li>
+<p><a href="https://tekton.dev/docs/">TektonCD - Docs</a></p>
+</li>
+<li>
+<p><a href="https://katacoda.com/tektoncd/scenarios/playground">Tekton Playground</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="02-repo.html">2. Tekton examples repository</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
