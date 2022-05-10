@@ -3,7 +3,7 @@ runtime:
 
 site:
   title: Red Hat Workshop - Openshift Pipelines
-  url: http://localhost:3000/rhs-build-course/index.html
+  url: https://davidseve.github.io/redhat-workshop-openshift-pipelines/redhat-workshop-openshift-pipelines/index.html
   start_page: redhat-workshop-openshift-pipelines::index.adoc
 
 content:
