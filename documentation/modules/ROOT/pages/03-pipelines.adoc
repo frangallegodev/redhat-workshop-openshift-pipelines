@@ -117,6 +117,11 @@ Start the task without parameters it will force to declare them:
 [source,input,subs="+macros,+attributes"]
 ----
 tkn task start hello-params-task --showlog
+----
+[.lines_7]
+[.console-output]
+[source,input,subs="+macros,+attributes"]
+----
 ? Value for param `person` of type `string`? (Default is `World`) World
 TaskRun started: hello-params-task-run-xpgv7
 Waiting for logs to be available...
@@ -134,6 +139,11 @@ the parameter:
 tkn task start hello-params-task \
   -p person="My name" \
   --showlog
+----
+[.lines_7]
+[.console-output]
+[source,input,subs="+macros,+attributes"]
+----
 TaskRun started: hello-params-task-run-jqfbs
 Waiting for logs to be available...
 [say-hello] My name
@@ -171,6 +181,11 @@ Start the task.
 tkn task start hello-multisteps-task \
   -p person="My name" \
   --showlog
+----
+[.lines_7]
+[.console-output]
+[source,input,subs="+macros,+attributes"]
+----
 TaskRun started: hello-multisteps-task-run-xq79n
 Waiting for logs to be available...
 [write-hello] Preparing greeting
@@ -230,6 +245,11 @@ To start the pipeline:
 [source,input,subs="+macros,+attributes"]
 ----
 tkn pipeline start say-things-pipeline --showlog
+----
+[.lines_7]
+[.console-output]
+[source,input,subs="+macros,+attributes"]
+----
 PipelineRun started: say-things-pipeline-run-4wsvb
 Waiting for logs to be available...
 [second-task : say-it] And this is the second task
@@ -282,6 +302,11 @@ To start the pipeline:
 [source,input,subs="+macros,+attributes"]
 ----
 tkn pipeline start say-things-in-order-pipeline --showlog
+----
+[.lines_7]
+[.console-output]
+[source,input,subs="+macros,+attributes"]
+----
 PipelineRun started: say-things-in-order-pipeline-run-w6fvn
 Waiting for logs to be available...
 [first-task : say-it] Hello, this is the first task
@@ -444,6 +469,11 @@ to use this service externally, we need to expose as a route:
 [source,input,subs="+macros,+attributes"]
 ----
 oc get svc
+----
+[.lines_7]
+[.console-output]
+[source,input,subs="+macros,+attributes"]
+----
 NAME                                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
 el-count-workspace-pipeline-eventlistener   ClusterIP   172.30.134.93   <none>        8080/TCP,9000/TCP   13m
 ----
@@ -461,6 +491,11 @@ The new should be similar to:
 [source,input,subs="+macros,+attributes"]
 ----
 oc get route
+----
+[.lines_7]
+[.console-output]
+[source,input,subs="+macros,+attributes"]
+----
 NAME                                        HOST/PORT                                                                                                   PATH   SERVICES                                    PORT            TERMINATION   WILDCARD
 el-count-workspace-pipeline-eventlistener   el-count-workspace-pipeline-eventlistener-pipelines-demo.apps.cluster-76lkr.76lkr.sandbox1545.opentlc.com          el-count-workspace-pipeline-eventlistener   http-listener                 None
 ----
