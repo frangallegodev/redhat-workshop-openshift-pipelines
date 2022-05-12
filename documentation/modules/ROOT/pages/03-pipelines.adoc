@@ -73,6 +73,11 @@ Start the task and show the log output:
 [source,input,subs="+macros,+attributes"]
 ----
 tkn task start hello-task --showlog
+----
+[.lines_7]
+[.console-output]
+[source,input,subs="+macros,+attributes"]
+----
 TaskRun started: hello-task-run-gng4t
 Waiting for logs to be available...
 [say-hello] Hello World
