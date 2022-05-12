@@ -285,8 +285,12 @@ task is started.</p>
 </div>
 <div class="listingblock lines_7 console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn task start hello-params-task --showlog
-? Value for param `person` of type `string`? (Default is `World`) World
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn task start hello-params-task --showlog</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">? Value for param `person` of type `string`? (Default is `World`) World
 TaskRun started: hello-params-task-run-xpgv7
 Waiting for logs to be available...
 [say-hello] Hello World</code></pre>
@@ -301,8 +305,12 @@ the parameter:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn task start hello-params-task \
   -p person="My name" \
-  --showlog
-TaskRun started: hello-params-task-run-jqfbs
+  --showlog</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">TaskRun started: hello-params-task-run-jqfbs
 Waiting for logs to be available...
 [say-hello] My name</code></pre>
 </div>
@@ -370,8 +378,12 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn task start hello-multisteps-task \
   -p person="My name" \
-  --showlog
-TaskRun started: hello-multisteps-task-run-xq79n
+  --showlog</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">TaskRun started: hello-multisteps-task-run-xq79n
 Waiting for logs to be available...
 [write-hello] Preparing greeting
 [write-hello] Done!
@@ -466,8 +478,12 @@ spec:
 </div>
 <div class="listingblock lines_7 console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn pipeline start say-things-pipeline --showlog
-PipelineRun started: say-things-pipeline-run-4wsvb
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn pipeline start say-things-pipeline --showlog</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">PipelineRun started: say-things-pipeline-run-4wsvb
 Waiting for logs to be available...
 [second-task : say-it] And this is the second task
 [first-task : say-it] Hello, this is the first task</code></pre>
@@ -574,8 +590,12 @@ spec:
 </div>
 <div class="listingblock lines_7 console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn pipeline start say-things-in-order-pipeline --showlog
-PipelineRun started: say-things-in-order-pipeline-run-w6fvn
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">tkn pipeline start say-things-in-order-pipeline --showlog</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">PipelineRun started: say-things-in-order-pipeline-run-w6fvn
 Waiting for logs to be available...
 [first-task : say-it] Hello, this is the first task
 
@@ -880,8 +900,12 @@ to use this service externally, we need to expose as a route:</p>
 </div>
 <div class="listingblock lines_7 console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get svc
-NAME                                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get svc</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">NAME                                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
 el-count-workspace-pipeline-eventlistener   ClusterIP   172.30.134.93   &lt;none&gt;        8080/TCP,9000/TCP   13m</code></pre>
 </div>
 </div>
@@ -895,8 +919,12 @@ el-count-workspace-pipeline-eventlistener   ClusterIP   172.30.134.93   &lt;none
 </div>
 <div class="listingblock lines_7 console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get route
-NAME                                        HOST/PORT                                                                                                   PATH   SERVICES                                    PORT            TERMINATION   WILDCARD
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get route</code></pre>
+</div>
+</div>
+<div class="listingblock lines_7 console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">NAME                                        HOST/PORT                                                                                                   PATH   SERVICES                                    PORT            TERMINATION   WILDCARD
 el-count-workspace-pipeline-eventlistener   el-count-workspace-pipeline-eventlistener-pipelines-demo.apps.cluster-76lkr.76lkr.sandbox1545.opentlc.com          el-count-workspace-pipeline-eventlistener   http-listener                 None</code></pre>
 </div>
 </div>
